@@ -1,0 +1,52 @@
+body {
+  background-color: #e6f4e6; /* verde claro */
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 2rem;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.semestres-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.semestre {
+  background-color: #d0e9d0;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.semestre h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.ramo {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s, text-decoration 0.3s;
+  cursor: pointer;
+}
+
+.ramo.tachado {
+  background-color: #c7c7c7;
+  text-decoration: line-through;
+  color: #555;
+}
+
+.estado {
+  font-size: 1rem;
+}
