@@ -6,7 +6,7 @@ const semestres = [
       "Antropología General",
       "Taller de Vinculación Laboral en Contextos del Trabajo Social",
       "Computación Básica",
-      "Desarrollo de Habilidades Comunicativas"
+      "Desarrollo de Habilidades Comunicativas",
       "Taller de Nivelación Matemática"
     ]
   },
