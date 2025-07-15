@@ -88,10 +88,12 @@ const semestres = [
   }
 ];
 
-// Generar HTML dinámicamente
+// Obtener el progreso guardado desde localStorage
+const savedProgress = JSON.parse(localStorage.getItem("progresoRamos")) || {};
+
 const container = document.querySelector(".semestres-container");
 
-semestres.forEach((semestre, index) => {
+semestres.forEach((semestre, semestreIndex) => {
   const semestreDiv = document.createElement("div");
   semestreDiv.className = "semestre";
 
@@ -99,7 +101,8 @@ semestres.forEach((semestre, index) => {
   title.textContent = semestre.nombre;
   semestreDiv.appendChild(title);
 
-  semestre.ramos.forEach((ramo) => {
+  semestre.ramos.forEach((ramo, ramoIndex) => {
+    const id = `s${semestreIndex}-r${ramoIndex}`;
     const ramoDiv = document.createElement("div");
     ramoDiv.className = "ramo";
 
@@ -108,14 +111,24 @@ semestres.forEach((semestre, index) => {
 
     const estado = document.createElement("span");
     estado.className = "estado";
-    estado.textContent = "⭕";
+
+    // Verifica si este ramo ya fue marcado
+    const isTachado = savedProgress[id] === true;
+    if (isTachado) {
+      ramoDiv.classList.add("tachado");
+      estado.textContent = "✅";
+    } else {
+      estado.textContent = "⭕";
+    }
 
     ramoDiv.appendChild(texto);
     ramoDiv.appendChild(estado);
 
     ramoDiv.addEventListener("click", () => {
-      ramoDiv.classList.toggle("tachado");
-      estado.textContent = ramoDiv.classList.contains("tachado") ? "✅" : "⭕";
+      const currentlyTachado = ramoDiv.classList.toggle("tachado");
+      estado.textContent = currentlyTachado ? "✅" : "⭕";
+      savedProgress[id] = currentlyTachado;
+      localStorage.setItem("progresoRamos", JSON.stringify(savedProgress));
     });
 
     semestreDiv.appendChild(ramoDiv);
